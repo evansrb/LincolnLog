@@ -41,6 +41,7 @@
             oms.addListener("spiderfy", function (markers) {
                 for (var i = 0; i < markers.length; i++) {
                     markers[i].setShadow(null);
+                    markers[i].setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
                 }
                 iw.close();
             });
@@ -55,6 +56,7 @@
                             new google.maps.Point(10, 34)
                         )
                     );
+                    markers[i].setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
                 }
             });
 
