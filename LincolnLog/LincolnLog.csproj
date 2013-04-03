@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -14,19 +15,19 @@
     <AssemblyName>LincolnLog</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
-    <SourceAnalysisOverrideSettingsFile>C:\Users\Cappy\AppData\Roaming\ICSharpCode/SharpDevelop4\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
-    <SignAssembly>False</SignAssembly>
-    <DelaySign>False</DelaySign>
-    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
-    <NoStdLib>False</NoStdLib>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <RunCodeAnalysis>False</RunCodeAnalysis>
-    <RunSourceAnalysis>False</RunSourceAnalysis>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>Full</DebugType>
+    <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
@@ -41,17 +42,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PackageAsSingleFile>true</PackageAsSingleFile>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
-    <StartAction>Project</StartAction>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
-    <RegisterForComInterop>False</RegisterForComInterop>
-    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
-    <BaseAddress>4194304</BaseAddress>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <FileAlignment>4096</FileAlignment>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
@@ -73,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Calendar.aspx" />
+    <Content Include="Detail.aspx" />
     <Content Include="dayrow.xsl" />
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
@@ -88,17 +79,17 @@
     <Content Include="javascripts\dragdrop.js" />
     <Content Include="javascripts\effects.js" />
     <Content Include="javascripts\jquery.js" />
+    <Content Include="javascripts\oms.min.js" />
     <Content Include="javascripts\prototype.js" />
     <Content Include="javascripts\script1.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Map.aspx" />
     <Content Include="NewEntries.aspx" />
     <Content Include="Search.aspx" />
     <Content Include="StyleSheets\lincoln.css" />
     <Content Include="ThisDay.aspx" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -113,6 +104,14 @@
     </Compile>
     <Compile Include="Calendar.aspx.designer.cs">
       <DependentUpon>Calendar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Coordinates.cs" />
+    <Compile Include="Detail.aspx.cs">
+      <DependentUpon>Detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Detail.aspx.designer.cs">
+      <DependentUpon>Detail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -130,6 +129,13 @@
     </Compile>
     <Compile Include="LincolnLog.Master.designer.cs">
       <DependentUpon>LincolnLog.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Map.aspx.cs">
+      <DependentUpon>Map.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Map.aspx.designer.cs">
+      <DependentUpon>Map.aspx</DependentUpon>
     </Compile>
     <Compile Include="NewEntries.aspx.cs">
       <DependentUpon>NewEntries.aspx</DependentUpon>
@@ -153,21 +159,28 @@
     <Compile Include="ThisDay.aspx.designer.cs">
       <DependentUpon>ThisDay.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="LincolnLog.Master" />
   </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>8080</DevelopmentServerPort>
+          <DevelopmentServerPort>57669</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/LincolnLog</IISUrl>
+          <IISUrl>
+          </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

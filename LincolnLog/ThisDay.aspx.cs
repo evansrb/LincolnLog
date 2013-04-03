@@ -109,9 +109,11 @@ namespace LincolnLog
                 SqlCommand cmdDay = new SqlCommand("SELECT [text] FROM entries WHERE DAY([date])=@theday and MONTH([date])=@themonth order by [date]");
                 cmdDay.CommandType = CommandType.Text;
                 cmdDay.Connection = conn;
+
                 SqlParameter theDay = new SqlParameter();
                 theDay.ParameterName = "@theday";
                 cmdDay.Parameters.Add(theDay);
+
                 SqlParameter theMonth = new SqlParameter();
                 theMonth.ParameterName = "@themonth";
                 cmdDay.Parameters.Add(theMonth);
