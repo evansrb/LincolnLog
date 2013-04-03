@@ -14,11 +14,13 @@ namespace LincolnLog
 
             Regex regex = new Regex("<place\\s+.*>.*</place>");
             Match match = regex.Match(text);
+
             if (match.Success) {
                 int start = match.Value.IndexOf(">");
                 int end = match.Value.IndexOf("<", start);
                 return match.Value.Substring(start + 1, end - start - 1);
             }
+
             return null;
 
         }
