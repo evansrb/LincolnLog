@@ -1,0 +1,278 @@
+/* basic appearance     */
+
+body {
+/*    color: #034D8D; */
+    color: #000000;
+   background: url(../images/back3.gif) /*#ffffff #333366*/;
+ /*   font-family: Century Gothic,Gill Sans, Verdana, sans-serif;*/
+font-family: "Frutiger","Univers","Helvetica Neue", arial, helvetica, sans-serif;
+ font-size: 14px;  
+ font-weight: 400;
+    }
+
+.bold {
+    font-weight: bold;
+    }
+    
+.centerpage
+{
+    float: left;
+    text-align: center;
+}
+/* matched words in text, current daate in calendar, etc */
+
+.match { background: yellow; }
+
+.nomatch { background: transparent; }
+
+.case {
+    font-style: italic;
+    }
+
+.title { font-style: italic; }
+
+.date {
+    /*color: #034D8D;*/
+    color: #000000;
+    }
+.dateRange {
+    /*color: #034D8D;*/
+    color: #000000;
+    }
+
+.dateline {
+    /*color: #333366;*/
+    color: #000000;
+    }
+
+.day { /* calendar display */
+    font-size: 12px;
+    font-weight: lighter;
+    text-align: center;
+    width: 20;
+    }
+
+/* he should have called this one 'bibl' */
+.green {
+    color: green;
+    padding-left: 5px;
+    }
+
+/* titles inside bibls: */
+.bibl-title {
+    color: green;
+    font-style: italic;
+    }
+
+h2 {
+    color: #A51E39;
+   font-size: 1em; 
+    }
+
+h3 {
+    color: #A51E39;
+   font-size: 0.9em; 
+    }
+
+/* first few words of some text or form */
+
+.leader {
+    color: #A51E39;
+    font-size: 1.2em;
+    }
+
+.month { /* calendar display */
+    font-weight: lighter;
+    }
+
+.navbar {
+    font-size: 12px;
+    text-align: center;
+    vertical-align: top;
+    width: 360px;
+    }
+
+.place {
+    /*color: #333366;*/
+    color: #000066;
+    }
+
+.purple {
+    color: purple;
+    }
+
+.red {
+    color: red;
+    }
+
+.smaller {
+    font-size: smaller;
+    }
+/* to prevent underlining link e.g. in calendar */
+
+.smallerplain {
+    font-size: smaller;
+  text-decoration: none;
+    }
+
+.bigbright {
+ text-decoration: none;
+ font-size: 20;
+ background: blue;
+ color: white; }
+
+.buttoncell { text-align: center; }
+
+/* because these do not underline give them colors */
+
+.navbar a:link {
+    color: blue;
+    text-decoration: none
+    }
+
+.navbar a:visited {
+    color: blue;
+    text-decoration: none
+    }
+
+.navbar a:active {
+    color: blue;
+    text-decoration: underline
+    }
+
+.navbar a:hover {
+    color: blue;
+    text-decoration: underline
+    }
+.crumb a:link {
+    color: blue;
+    text-decoration: none;
+    }
+
+.crumb a:visited {
+    color: blue;
+    text-decoration: none;
+    }
+
+.crumb a:active {
+    color: blue;
+    text-decoration: none;
+    }
+
+.crumb a:hover {
+    color: blue;
+    text-decoration: none;
+    }
+
+
+/* because these do not underline give them colors */
+
+.plain a:link {
+    color: blue;
+    text-decoration: none
+    }
+
+.plain a:visited {
+    color: purple;
+    text-decoration: none
+    }
+
+.plain a:active {
+    color: red;
+    text-decoration: none
+    }
+
+.plain a:hover {
+    color: red;
+    text-decoration: none
+    }
+    
+.picLink a:link {
+    text-decoration: none;
+    border-style:none; 
+    border-width: 0px;
+    }
+
+.picLink a:visited {
+    text-decoration: none;
+    border-style:none; 
+    border-width: 0px;
+    }
+
+.picLink a:active {
+    text-decoration: none;
+    border-style:none; 
+    border-width: 0px;
+    }
+
+.picLink a:hover {
+    text-decoration: none;
+    border-style:none; 
+    border-width: 0px;
+    }
+    
+td.left {
+    width:120px;
+}
+
+.notice {
+  color: red;
+  font-weight: bold;
+}
+.selection {
+  color:#A51E39;
+  font-size:17px;
+}
+.selection a {
+  color:#A51E39;
+}
+
+.revisedt {
+  color:#336633;
+  font-size:smaller;
+}
+.newt {
+  color:red;
+  font-size:smaller;
+}
+.side 
+{
+	float: left;
+        width: 120px;
+        height: 600px;
+        margin-top: 10px;
+        margin-right: 10px;
+}
+.main 
+{
+	float: left;
+        width: 80%;
+}
+.yeartable 
+{
+    border-width: 1px;
+    border-color: Black;
+    border-style:solid;
+}
+.cell 
+{
+    border-width: 1px;
+    border-color: Black;
+    border-style:solid;
+    padding: 10px;
+    font-size:10pt;
+}
+.column 
+{
+    border-width: 0px;
+    border-color: Black;
+    border-style:solid;
+}
+
+.clearDropDown
+{
+}
+
+.clearText
+{
+}
