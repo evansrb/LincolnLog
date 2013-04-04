@@ -11,6 +11,10 @@
 
         var map;
 
+        var ZOOM_MIN = 0;
+        var ZOOM_MAZ = 21;
+        var DEFAULT_ZOOM = 6;
+
         function initialize() {
 
             var markers = new Array();
@@ -20,10 +24,20 @@
             var options = {
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 center: new google.maps.LatLng(39.9500, -82.9833),
-                zoom: 6
+                zoom: DEFAULT_ZOOM
             };
 
             var map = new google.maps.Map(document.getElementById("map-canvas"), options);
+
+            google.maps.event.addListener(map, 'zoom_changed', function () {
+
+                var currentZoom = map.getZoom();
+
+                if (currentZoom > DEFAULT_ZOOM + 2 || currentZoom < DEFAULT_ZOOM - 2) {
+                    map.setZoom(DEFAULT_ZOOM);
+                }
+
+            });
 
             var oms = new OverlappingMarkerSpiderfier(map, {
                 markersWontMove: true,
@@ -62,20 +76,20 @@
 
             for (var i = 0; i < markers.length; i++) {
 
-                var data = markers[i];
+                var latlng = new google.maps.LatLng(markers[i].lat, markers[i].long);
 
                 var marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(data.lat, data.long),
+                    position: latlng,
                     map: map,
                     animation: google.maps.Animation.DROP
                 });
 
                 var desc = "";
-                if (data.loc != "") {
-                    desc += "<h3>" + data.loc + "</h3>";
+                if (markers[i].loc != "") {
+                    desc += "<h3>" + markers[i].loc + "</h3>";
                 }
 
-                desc += '<a href="Detail.aspx?id=' + data.id + '">View Details</a>'
+                desc += '<a href="Detail.aspx?id=' + markers[i].id + '">View Details</a>'
 
                 marker.desc = desc;
                 oms.addMarker(marker);

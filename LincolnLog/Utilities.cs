@@ -9,6 +9,20 @@ namespace LincolnLog
     public class Utilities
     {
 
+        public static void log(string str)
+        {
+
+            System.Diagnostics.Trace.Write(str);
+
+        }
+
+        public static void logLine(string str)
+        {
+
+            System.Diagnostics.Trace.WriteLine(str);
+
+        }
+
         public static string getLocationName(string text)
         {
 
@@ -16,9 +30,12 @@ namespace LincolnLog
             Match match = regex.Match(text);
 
             if (match.Success) {
+
                 int start = match.Value.IndexOf(">");
                 int end = match.Value.IndexOf("<", start);
+
                 return match.Value.Substring(start + 1, end - start - 1);
+
             }
 
             return null;
