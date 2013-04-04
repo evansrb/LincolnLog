@@ -74,7 +74,7 @@ namespace LincolnLog
                                 "id : " + id + ", " +
                                 "lat : " + temp.getLatitude() + "," +
                                 "long : " + temp.getLongitude() + "," +
-                                "loc : '" + Utilities.getLocationName(txt) + "'" +
+                                "loc : \"" + Utilities.getLocationName(txt) + "\"" +
                             "};");
 
                             numPins++;
