@@ -8,9 +8,6 @@
       }
     </style>
     <script>
-
-        var map;
-        var geocoder;
         var pin;
 
         function initialize() {
@@ -23,10 +20,6 @@
                 <% } %>
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
-
-            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
-            geocoder = geocoder = new google.maps.Geocoder();
 
             pin = new google.maps.Marker({
                 <% if (location != null)

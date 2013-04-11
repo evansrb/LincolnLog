@@ -72,8 +72,9 @@ namespace LincolnLog
 
                             sb.AppendLine("markers[" + numPins + "] = {" +
                                 "id : " + id + ", " +
-                                "lat : " + temp.getLatitude() + "," +
-                                "long : " + temp.getLongitude() + "," +
+                                "lat : " + temp.getLatitude() + ", " +
+                                "lng : " + temp.getLongitude() + ", " +
+                                "coords : new google.maps.LatLng(" + temp.getLatitude() + ", " + temp.getLongitude() + "), " +
                                 "loc : \"" + Utilities.getLocationName(txt) + "\"" +
                             "};");
 
