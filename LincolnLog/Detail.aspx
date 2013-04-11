@@ -10,22 +10,44 @@
     <script>
 
         var map;
+        var geocoder;
+        var pin;
 
         function initialize() {
 
             var mapOptions = {
                 zoom: 8,
-                center: new google.maps.LatLng(<%=center%>),
+                <% if (location != null)
+                   { %>
+                center: new google.maps.LatLng(<%=location%>),
+                <% } %>
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
 
             map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-            var pin = new google.maps.Marker({
-                position: new google.maps.LatLng(<%=center%>),
+            geocoder = geocoder = new google.maps.Geocoder();
+
+            pin = new google.maps.Marker({
+                <% if (location != null)
+                   { %>
+                position: new google.maps.LatLng(<%=location%>),
+                <% } %>
                 map: map,
                 animation: google.maps.Animation.DROP
             });
+            
+            <% if (location == null)
+                { %>
+            getLatLngFromName("<%=name%>", update, map, pin);
+            <% } %>
+
+        }
+
+        function update(map, pin, loc) {
+
+            map.setCenter(loc);
+            pin.setPosition(loc);
 
         }
 
@@ -33,7 +55,7 @@
 
     </script>
 	 <%=description%>
-    <div id="map-canvas"></div>
+    <%=map%>
     <div id ="test" runat="server">
         </div>
 

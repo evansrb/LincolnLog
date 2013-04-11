@@ -81,6 +81,7 @@
     <Content Include="javascripts\jquery.js" />
     <Content Include="javascripts\oms.min.js" />
     <Content Include="javascripts\prototype.js" />
+    <Content Include="javascripts\script.js" />
     <Content Include="javascripts\script1.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

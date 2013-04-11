@@ -27,6 +27,7 @@ namespace LincolnLog
         {
 
             Regex regex = new Regex("<place\\s+.*>.*</place>");
+
             Match match = regex.Match(text);
 
             if (match.Success) {
@@ -46,20 +47,22 @@ namespace LincolnLog
         {
 
             Regex regex = new Regex("key='(\\-?\\d+(\\.\\d+)?),\\s*(\\-?\\d+(\\.\\d+)?)'");
-            Match match = regex.Match(text);
 
-            if (match.Success && match.Value.IndexOf(",") >= 0)
+            foreach (Match match in regex.Matches(text))
             {
+                if (match.Success && (match.Value.IndexOf(",") >= 0))
+                {
 
-                int start = match.Value.IndexOf("'");
-                int mid = match.Value.IndexOf(",");
-                int end = match.Value.LastIndexOf("'");
+                    int start = match.Value.IndexOf("'");
+                    int mid = match.Value.IndexOf(",");
+                    int end = match.Value.LastIndexOf("'");
 
-                string latitude = match.Value.Substring(start + 1, mid - start - 1);
-                string longitude = match.Value.Substring(mid + 2, end - mid - 2);
+                    string latitude = match.Value.Substring(start + 1, mid - start - 1);
+                    string longitude = match.Value.Substring(mid + 2, end - mid - 2);
 
-                return new Coordinates(latitude, longitude);
+                    return new Coordinates(latitude, longitude);
 
+                }
             }
 
             return null;

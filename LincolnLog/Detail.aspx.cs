@@ -19,7 +19,11 @@ namespace LincolnLog
     public partial class Detail : System.Web.UI.Page
     {
 
-        public string center = "";
+        public string map = "<div id=\"map-canvas\"></div>";
+
+        public string location = "";
+
+        public string name = "";
 
         public string description = "";
 
@@ -54,7 +58,15 @@ namespace LincolnLog
 
                         Coordinates coords = Utilities.getLatLongFromStr(record);
 
-                        center = coords.ToString();
+                        if (coords != null)
+                        {
+                            location = coords.ToString();
+                        }
+                        else
+                        {
+                            location = null;
+                            name = Utilities.getLocationName(record);
+                        }
 
                         description = record;
 
@@ -62,7 +74,6 @@ namespace LincolnLog
                 }
 
                 conn.Close();
-
 
             }
 
