@@ -67,7 +67,7 @@ namespace LincolnLog
 
                         Coordinates temp;
 
-                        if ((temp = Utilities.getLatLongFromStr(txt)) != null)
+                        if ((temp = Utilities.getLatLngFromStr(txt)) != null)
                         {
 
                             sb.AppendLine("markers[" + numPins + "] = {" +

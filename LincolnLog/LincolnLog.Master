@@ -20,7 +20,7 @@
   <body>
     <form id="form1" runat="server">
 <div>
-       <img alt="Lincoln Log" width="100%"  src="images/lincolnlog.gif"/>
+       <img alt="Lincoln Log" width="100%" id="header-image" src="images/lincolnlog.gif"/>
     </div>    
      <div class="side">
      

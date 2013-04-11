@@ -56,7 +56,7 @@ namespace LincolnLog
 
                         string record = string.Format("{0}", sdr[1]);
 
-                        Coordinates coords = Utilities.getLatLongFromStr(record);
+                        Coordinates coords = Utilities.getLatLngFromStr(record);
 
                         if (coords != null)
                         {

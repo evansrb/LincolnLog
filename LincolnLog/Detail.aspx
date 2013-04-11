@@ -8,17 +8,19 @@
       }
     </style>
     <script>
+
         var pin;
 
         function initialize() {
 
             bootstrap();
 
+            enforceZoom(G_MAP, LL_CONFIG.USER_ZOOM_MIN, LL_CONFIG.ZOOM_MAX, LL_CONFIG.ZOOM_DEFAULT);
+
             var center;
 
             pin = new google.maps.Marker({
-                <% if (location != null)
-                   { %>
+                <% if (location != null) { %>
                 position: new google.maps.LatLng(<%=location%>),
                 <% } %>
                 map: G_MAP,
@@ -40,10 +42,10 @@
 
         }
 
-        google.maps.event.addDomListener(window, 'load', initialize);
+        google.maps.event.addDomListener(window, "load", initialize);
 
     </script>
-	 <%=description%>
+	<%=description%>
     <%=map%>
     <div id ="test" runat="server">
         </div>

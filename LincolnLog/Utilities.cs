@@ -6,27 +6,27 @@ using System.Web;
 
 namespace LincolnLog
 {
+
     public class Utilities
     {
 
         public static void log(string str)
         {
-
             System.Diagnostics.Trace.Write(str);
-
         }
 
         public static void logLine(string str)
         {
-
             System.Diagnostics.Trace.WriteLine(str);
-
         }
 
         public static string getLocationName(string text)
         {
 
             Regex regex = new Regex("<place\\s+.*>.*</place>");
+            Regex strip = new Regex("[^a-zA-Z0-9\\s*,]");
+
+            string name;
 
             Match match = regex.Match(text);
 
@@ -35,7 +35,8 @@ namespace LincolnLog
                 int start = match.Value.IndexOf(">");
                 int end = match.Value.IndexOf("<", start);
 
-                return match.Value.Substring(start + 1, end - start - 1);
+                name = match.Value.Substring(start + 1, end - start - 1);
+                return strip.Replace(name, "");
 
             }
 
@@ -43,26 +44,31 @@ namespace LincolnLog
 
         }
 
-        public static Coordinates getLatLongFromStr(string text)
+        public static Coordinates getLatLngFromStr(string text)
         {
 
             Regex regex = new Regex("key='(\\-?\\d+(\\.\\d+)?),\\s*(\\-?\\d+(\\.\\d+)?)'");
+            Regex strip = new Regex("[^0-9-.,]");
+
+            string latlng;
 
             foreach (Match match in regex.Matches(text))
             {
+
                 if (match.Success && (match.Value.IndexOf(",") >= 0))
                 {
 
-                    int start = match.Value.IndexOf("'");
-                    int mid = match.Value.IndexOf(",");
-                    int end = match.Value.LastIndexOf("'");
+                    latlng = strip.Replace(match.Value, "");
 
-                    string latitude = match.Value.Substring(start + 1, mid - start - 1);
-                    string longitude = match.Value.Substring(mid + 2, end - mid - 2);
+                    int split = latlng.IndexOf(",");
 
-                    return new Coordinates(latitude, longitude);
+                    string lat = latlng.Substring(0, split);
+                    string lng = latlng.Substring(split + 1, latlng.Length - split - 1);
+
+                    return new Coordinates(lat, lng);
 
                 }
+
             }
 
             return null;
@@ -70,4 +76,5 @@ namespace LincolnLog
         }
 
     }
+
 }

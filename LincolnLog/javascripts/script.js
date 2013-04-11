@@ -1,7 +1,8 @@
-﻿var G_MAP;
-var G_GEOCODER;
+﻿var G_MAP; // the google map object
+var G_GEOCODER; // the google geocoder object
 
-var CONFIG = {
+// this holds configuration data
+var LL_CONFIG = {
 
     ZOOM_MIN : 0,
     ZOOM_MAX : 21,
@@ -14,15 +15,16 @@ var CONFIG = {
 
 };
 
+// map default options
 var MAP_DEFAULT_OPTIONS = {
-    zoom: CONFIG.ZOOM_DEFAULT,
+    zoom: LL_CONFIG.ZOOM_DEFAULT,
     center: new google.maps.LatLng(0, 0),
     mapTypeId: google.maps.MapTypeId.ROADMAP
 };
 
 function bootstrap() {
 
-    G_MAP = new google.maps.Map(document.getElementById(CONFIG.MAP_ID), MAP_DEFAULT_OPTIONS);
+    G_MAP = new google.maps.Map(document.getElementById(LL_CONFIG.MAP_ID), MAP_DEFAULT_OPTIONS);
     G_GEOCODER = geocoder = new google.maps.Geocoder();
 
 }
