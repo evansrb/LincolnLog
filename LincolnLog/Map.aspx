@@ -74,6 +74,7 @@
         google.maps.event.addDomListener(window, "load", initialize);
 
     </script>
+    <h1><%=DateTime.Today.ToString("MMMM d")%></h1>
     <div id="map-canvas"></div>
     <div id ="test" runat="server">
         </div>

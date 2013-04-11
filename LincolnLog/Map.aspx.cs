@@ -28,6 +28,7 @@ namespace LincolnLog
 
             string day = DateTime.Now.Day.ToString();
             string month = DateTime.Now.Month.ToString();
+            string year = DateTime.Now.Year.ToString();
 
             StringBuilder sb = new StringBuilder();
 
@@ -39,7 +40,7 @@ namespace LincolnLog
 
                 conn.Open();
 
-                SqlCommand entries = new SqlCommand("SELECT * FROM entries  WHERE DAY([date])=@day and MONTH([date])=@month");
+                SqlCommand entries = new SqlCommand("SELECT * FROM entries  WHERE DAY([date])=@day and MONTH([date])=@month and MONTH([date])=@month");
                 entries.CommandType = CommandType.Text;
                 entries.Connection = conn;
 

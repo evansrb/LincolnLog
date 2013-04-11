@@ -45,7 +45,7 @@
         google.maps.event.addDomListener(window, "load", initialize);
 
     </script>
-	<%=description%>
+	<table border="1" style="margin-bottom: 10px;"><%=description%></table>
     <%=map%>
     <div id ="test" runat="server">
         </div>

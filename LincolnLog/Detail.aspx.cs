@@ -30,6 +30,17 @@ namespace LincolnLog
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            string requestId = Request.QueryString["id"];
+            int intId = 0 ;
+
+            if (string.IsNullOrEmpty(requestId))
+            {
+                Response.Redirect("~/Home.aspx");
+            }
+            else
+            {
+                intId = Convert.ToInt32(requestId);
+            }
 
             string connStr = ConfigurationManager.ConnectionStrings["lincolnlog_productionConnectionString"].ConnectionString;
             using (SqlConnection conn = new SqlConnection(connStr))
@@ -45,7 +56,7 @@ namespace LincolnLog
                 id.ParameterName = "@id";
                 entries.Parameters.Add(id);
 
-                id.Value = Request.QueryString["id"];
+                id.Value = intId.ToString();
 
                 SqlDataReader sdr = entries.ExecuteReader();
 
@@ -55,6 +66,28 @@ namespace LincolnLog
                     {
 
                         string record = string.Format("{0}", sdr[1]);
+
+                        XslCompiledTransform oTransform = new XslCompiledTransform();
+
+                        System.Xml.XmlDocument myDoc = new System.Xml.XmlDocument();
+                        XsltArgumentList args = new XsltArgumentList();
+
+                        myDoc.LoadXml(record);
+
+                        System.IO.MemoryStream txt = new System.IO.MemoryStream();
+                        System.Xml.XmlTextWriter output = new System.Xml.XmlTextWriter(txt, System.Text.Encoding.UTF8);
+
+                        oTransform.Load(Server.MapPath("dayrow.xsl"));
+
+                        oTransform.Transform(myDoc, args, output, null);
+
+                        output.Flush();
+                        txt.Position = 0;
+
+                        StreamReader sr = new StreamReader(txt);
+
+                        string dumm = sr.ReadToEnd();
+                        description = dumm;
 
                         Coordinates coords = Utilities.getLatLngFromStr(record);
 
@@ -68,7 +101,7 @@ namespace LincolnLog
                             name = Utilities.getLocationName(record);
                         }
 
-                        description = record;
+                        //description = record;
 
                     }
                 }
