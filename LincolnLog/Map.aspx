@@ -13,7 +13,7 @@
 
             bootstrap();
 
-            enforceZoom(G_MAP, CONFIG.USER_ZOOM_MIN, CONFIG.ZOOM_MAX, CONFIG.ZOOM_DEFAULT);
+            enforceZoom(G_MAP, LL_CONFIG.USER_ZOOM_MIN, LL_CONFIG.ZOOM_MAX, LL_CONFIG.ZOOM_DEFAULT);
 
             var markers = new Array();
 

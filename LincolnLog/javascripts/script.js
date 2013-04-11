@@ -61,7 +61,7 @@ function getCenterPointFromMarkers(markers) {
 
 }
 
-function getLatLngFromName(name, callback) {
+function getLatLngFromName(name, callback, map, pin) {
 
     var place = { "address" : name };
 

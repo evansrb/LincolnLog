@@ -12,27 +12,23 @@
 
         function initialize() {
 
-            var mapOptions = {
-                zoom: 8,
-                <% if (location != null)
-                   { %>
-                center: new google.maps.LatLng(<%=location%>),
-                <% } %>
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
+            bootstrap();
+
+            var center;
 
             pin = new google.maps.Marker({
                 <% if (location != null)
                    { %>
                 position: new google.maps.LatLng(<%=location%>),
                 <% } %>
-                map: map,
+                map: G_MAP,
                 animation: google.maps.Animation.DROP
             });
             
-            <% if (location == null)
-                { %>
-            getLatLngFromName("<%=name%>", update, map, pin);
+            <% if (location != null) { %>
+                G_MAP.setCenter(new google.maps.LatLng(<%=location%>));
+            <% } else { %>
+                getLatLngFromName("<%=name%>", update, G_MAP, pin);
             <% } %>
 
         }
