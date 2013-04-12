@@ -64,6 +64,7 @@ namespace LincolnLog
 
                         string id = string.Format("{0}", sdr[0]);
                         string txt = string.Format("{0}", sdr[1]);
+                        string desc = Utilities.getDescription(txt, 256);
                         Match match = regex.Match(txt);
 
                         Coordinates temp;
@@ -73,6 +74,7 @@ namespace LincolnLog
 
                             sb.AppendLine("markers[" + numPins + "] = {" +
                                 "id : " + id + ", " +
+                                "desc : '" + desc + "', " +
                                 "lat : " + temp.getLatitude() + ", " +
                                 "lng : " + temp.getLongitude() + ", " +
                                 "coords : new google.maps.LatLng(" + temp.getLatitude() + ", " + temp.getLongitude() + "), " +

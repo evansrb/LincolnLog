@@ -31,8 +31,34 @@ namespace LincolnLog
             System.Diagnostics.Trace.WriteLine(str);
         }
 
+        public static string getDescription(string text, int length)
+        {
+
+            Regex strip = new Regex("<(.+?)>");
+
+            int start = text.IndexOf("<p");
+            int end = text.LastIndexOf("</p");
+
+            text = text.Substring(start, end - start - 1);
+
+            text = Regex.Replace(text, @"<[^>]*>", String.Empty);
+            text = text.Replace("'", @"\'");
+            text = text.Replace("\n", String.Empty);
+            text = text.Trim();
+
+            if (length > text.Length)
+            {
+                length = text.Length - 1;
+            }
+
+            return text.Substring(0, length) + "...";
+
+        }
+
         public static string getLocationName(string text)
         {
+
+            text = text.Replace("\n", " ");
 
             Regex regex = new Regex("<place\\s+.*>.*</place>");
             Regex strip = new Regex("[^a-zA-Z0-9\\s*,]");
@@ -41,13 +67,15 @@ namespace LincolnLog
 
             Match match = regex.Match(text);
 
+            logLine(text);
+
             if (match.Success) {
 
                 int start = match.Value.IndexOf(">");
                 int end = match.Value.IndexOf("<", start);
 
                 name = match.Value.Substring(start + 1, end - start - 1);
-                return strip.Replace(name, "");
+                return strip.Replace(name, String.Empty);
 
             }
 
@@ -69,7 +97,7 @@ namespace LincolnLog
                 if (match.Success && (match.Value.IndexOf(",") >= 0))
                 {
 
-                    latlng = strip.Replace(match.Value, "");
+                    latlng = strip.Replace(match.Value, String.Empty);
 
                     int split = latlng.IndexOf(",");
 

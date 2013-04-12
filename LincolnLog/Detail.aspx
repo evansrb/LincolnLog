@@ -2,10 +2,9 @@
 
 <asp:Content ID="Content" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style>
-      #map-canvas {
-        margin-left: 125px;
-        height: 600px;
-      }
+        #map-canvas {
+            min-height: 400px !important;
+        }
     </style>
     <script>
 
@@ -45,7 +44,7 @@
         google.maps.event.addDomListener(window, "load", initialize);
 
     </script>
-	<table border="1" style="margin-bottom: 10px;"><%=description%></table>
+	<table id="detail-desc" border="1"><%=description%></table>
     <%=map%>
     <div id ="test" runat="server">
         </div>

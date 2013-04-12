@@ -1,12 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LincolnLog.Master" AutoEventWireup="true" CodeBehind="Map.aspx.cs"  Inherits="LincolnLog.Map"  %>
 
 <asp:Content ID="Content" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <style>
-      #map-canvas {
-        margin-left: 125px;
-        height: 600px;
-      }
-    </style>	
     <script>
 
         function initialize() {
@@ -22,7 +16,8 @@
             var oms = new OverlappingMarkerSpiderfier(G_MAP, {
                 markersWontMove : true,
                 markersWontHide : true,
-                circleSpiralSwitchover : Infinity,
+                keepSpiderfied  : true,
+                circleSpiralSwitchover : 9,
                 legWeight : 2
             });
 
@@ -59,6 +54,7 @@
                 if (markers[i].loc != "") {
                     desc += "<h3>" + markers[i].loc + "</h3>";
                 }
+                desc += "<p>" + markers[i].desc + "</p>";
 
                 desc += '<a href="Detail.aspx?id=' + markers[i].id + '">View Details</a>'
 
@@ -72,6 +68,14 @@
         }
 
         google.maps.event.addDomListener(window, "load", initialize);
+
+        $(window).resize(function () {
+            sizeMap();
+        });
+
+        $(window).load(function () {
+            sizeMap();
+        });
 
     </script>
     <h1><%=DateTime.Today.ToString("MMMM d")%></h1>

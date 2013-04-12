@@ -64,7 +64,9 @@
   <ItemGroup>
     <Content Include="Calendar.aspx" />
     <Content Include="Detail.aspx" />
-    <Content Include="dayrow.xsl" />
+    <Content Include="dayrow.xsl">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="Home.aspx" />
     <Content Include="images\back3.gif" />
