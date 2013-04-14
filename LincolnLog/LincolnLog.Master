@@ -19,6 +19,20 @@
             min-height: 300px;
             border: 5px solid #fc6;
         }
+        #map-nav {
+            margin: 0;
+            margin-bottom: 20px;
+            padding: 0;
+            list-style: none;
+            text-align: center;
+        }
+        #map-nav li {
+            display: inline-block;
+            margin-right: 25px;
+        }
+        #map-nav li:last-child {
+            margin-right: 0;
+        }
         table#detail-desc {
             margin-bottom: 10px;
             margin-left: 125px;

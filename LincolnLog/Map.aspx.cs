@@ -19,16 +19,100 @@ namespace LincolnLog
     public partial class Map : System.Web.UI.Page
     {
 
+        public string header;
+
+        public string prev;
+
+        public string next;
+
         public int numPins = 0;
 
         public string markers = "";
 
+        protected string[] getPrev(string curDay, string curMonth)
+        {
+
+            string[] prev = new string[2];
+
+            int day = Convert.ToInt32(curDay);
+            int month = Convert.ToInt32(curMonth);
+
+            if (month == 1)
+            {
+                month = 12;
+                day = Utilities.getDaysInMonth(month);
+            }
+            else
+            {
+                if (day > 1)
+                {
+                    day--;
+                }
+                else
+                {
+                    month--;
+                    day = Utilities.getDaysInMonth(month);
+                }
+            }
+
+            prev[0] = day.ToString();
+            prev[1] = month.ToString();
+
+            return prev;
+
+        }
+
+        protected string[] getNext(string curDay, string curMonth)
+        {
+
+            string[] next = new string[2];
+
+            int day = Convert.ToInt32(curDay);
+            int month = Convert.ToInt32(curMonth);
+
+            if (month == 12)
+            {
+                month = 1;
+                day = 1;
+            }
+            else
+            {
+                if (day < Utilities.getDaysInMonth(month))
+                {
+                    day++;
+                }
+                else
+                {
+                    month++;
+                    day = 1;
+                }
+            }
+
+            next[0] = day.ToString();
+            next[1] = month.ToString();
+
+            return next;
+
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            string day = DateTime.Now.Day.ToString();
-            string month = DateTime.Now.Month.ToString();
-            string year = DateTime.Now.Year.ToString();
+            string day;
+            string month;
+
+            if (string.IsNullOrEmpty(Request.QueryString["day"]) || string.IsNullOrEmpty(Request.QueryString["month"]))
+            {
+                day = DateTime.Now.Day.ToString();
+                month = DateTime.Now.Month.ToString();
+                Utilities.logLine("calculated");
+            }
+            else
+            {
+                day = Request.QueryString["day"];
+                month = Request.QueryString["month"];
+                Utilities.logLine("queried");
+            }
 
             StringBuilder sb = new StringBuilder();
 
@@ -91,6 +175,13 @@ namespace LincolnLog
                 conn.Close();
 
             }
+
+            string[] _prev = getPrev(day, month);
+            prev = string.Format("?day={0}&month={1}", _prev[0], _prev[1]);
+            string[] _next = getNext(day, month);
+            next = string.Format("?day={0}&month={1}", _next[0], _next[1]);
+
+            header = string.Format("{0} {1}", Utilities.getMonthName(month), day);
 
             markers = sb.ToString();
 

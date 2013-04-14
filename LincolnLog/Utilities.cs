@@ -23,12 +23,48 @@ namespace LincolnLog
 
         public static void log(string str)
         {
+
             System.Diagnostics.Trace.Write(str);
+
         }
 
         public static void logLine(string str)
         {
+
             System.Diagnostics.Trace.WriteLine(str);
+
+        }
+
+        public static string getMonthName(string monthName)
+        {
+
+            int month = Convert.ToInt32(monthName);
+            month--;
+
+            if (month < 0 || month > 11)
+            {
+                return null;
+            }
+
+            string[] months = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+
+            return months[month];
+        }
+
+        public static int getDaysInMonth(int month)
+        {
+
+            int[] daysInMonth = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+            month--;
+
+            if (month < 0 || month > 11)
+            {
+                return -1;
+            }
+
+            return daysInMonth[month];
+
         }
 
         public static string getDescription(string text, int length)

@@ -91,8 +91,12 @@
         });
 
     </script>
-    <h1><%=DateTime.Today.ToString("MMMM d")%></h1>
-    <p><a id="center-map" href="#">Center Map from Points</a></p>
+    <h1><%=header%></h1>
+    <ul id="map-nav">
+    <li><a href="<%=prev%>">Previous</a></li>
+    <li><a id="center-map" href="#">Center Map from Points</a></li>
+    <li><a href="<%=next%>">Next</a></li>
+    </ul>
     <div id="map-canvas"></div>
     <div id ="test" runat="server">
         </div>
