@@ -65,6 +65,25 @@ namespace LincolnLog
 
         }
 
+        protected bool validDate(string curDay, string curMonth)
+        {
+
+            int day = Convert.ToInt32(curDay);
+            int month = Convert.ToInt32(curMonth);
+
+            if (month < 1 || month > 12)
+            {
+                return false;
+            }
+
+            if (day < 1 || day > Utilities.getDaysInMonth(month)) {
+                return false;
+            }
+
+            return true;
+
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -82,6 +101,11 @@ namespace LincolnLog
                 day = Request.QueryString["day"];
                 month = Request.QueryString["month"];
                 Utilities.logLine("queried");
+            }
+
+            if (validDate(day, month) == false)
+            {
+                Response.Redirect("~/Map.aspx");
             }
 
             StringBuilder sb = new StringBuilder();

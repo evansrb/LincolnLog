@@ -52,7 +52,9 @@
 
     </script>
 	<table id="detail-desc" border="1"><%=description%></table>
-    <p><a id="center-map" href="#">Center Map at Point</a></p>
+    <ul id="map-nav">
+    <li><a id="center-map" href="#">Center Map at Point</a></li>
+    </ul>
     <%=map%>
     <div id ="test" runat="server">
         </div>
