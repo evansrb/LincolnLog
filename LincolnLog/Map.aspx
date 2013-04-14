@@ -58,6 +58,9 @@
                 if (markers[i].loc != "") {
                     desc += "<h3>" + markers[i].loc + "</h3>";
                 }
+                if (markers[i].date != "") {
+                    desc += "<h4>" + markers[i].date + "</h4>";
+                }
                 desc += "<p>" + markers[i].desc + "</p>";
 
                 desc += '<a href="Detail.aspx?id=' + markers[i].id + '">View Details</a>'
@@ -93,9 +96,9 @@
     </script>
     <h1><%=header%></h1>
     <ul id="map-nav">
-    <li><a href="<%=prev%>">Previous</a></li>
+    <li><a href="<%=prev%>">&laquo; Previous Day</a></li>
     <li><a id="center-map" href="#">Center Map from Points</a></li>
-    <li><a href="<%=next%>">Next</a></li>
+    <li><a href="<%=next%>">Next Day &raquo;</a></li>
     </ul>
     <div id="map-canvas"></div>
     <div id ="test" runat="server">

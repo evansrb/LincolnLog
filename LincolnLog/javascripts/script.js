@@ -6,7 +6,7 @@ var LL_CONFIG = {
 
     ZOOM_MIN : 0,
     ZOOM_MAX : 21,
-    ZOOM_DEFAULT: 6,
+    ZOOM_DEFAULT: 5,
 
     USER_ZOOM_MIN : 4,
     USER_ZOOM_MAX: 8,

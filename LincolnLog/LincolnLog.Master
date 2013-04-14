@@ -25,13 +25,27 @@
             padding: 0;
             list-style: none;
             text-align: center;
+            font-weight: bold;
         }
         #map-nav li {
             display: inline-block;
-            margin-right: 25px;
+            margin-right: 20px;
+            padding-right: 20px;
+            border-right: 1px solid #000;
         }
         #map-nav li:last-child {
             margin-right: 0;
+            padding-right: 0;
+            border-right: none;
+        }
+        #map-nav a {
+            color: #c00;
+            text-decoration: none;
+        }
+        #map-nav a:link, #map-nav a:active, #map-nav a:visited {
+        }
+        #map-nav a:hover {
+            text-decoration: underline;
         }
         table#detail-desc {
             margin-bottom: 10px;
@@ -54,7 +68,7 @@
         <asp:HyperLink ID="SearchLink" runat="server" NavigateUrl="~/Search.aspx" EnableViewState="False">Search</asp:HyperLink><br />
         <asp:HyperLink ID="CalendarLink" runat="server" NavigateUrl="~/Calendar.aspx" EnableViewState="False">Browse Calendar</asp:HyperLink><br />
         <asp:HyperLink ID="ThisDayLink" runat="server" NavigateUrl="~/ThisDay.aspx" EnableViewState="False">This Day</asp:HyperLink><br />
-        <asp:HyperLink ID="MapLink" runat="server" NavigateUrl="~/Map.aspx" EnableViewState="False">This Day (Map)</asp:HyperLink><br />
+        <asp:HyperLink ID="MapLink" runat="server" NavigateUrl="~/Map.aspx" EnableViewState="False">Browse By Day</asp:HyperLink><br />
         <br />
         <div class="picLink">
         <a href="http://www.papersofabrahamlincoln.org/"><img alt="Lincoln Papers" style="vertical-align: top; border-style:none;" src="/images/publication.png"/></a>

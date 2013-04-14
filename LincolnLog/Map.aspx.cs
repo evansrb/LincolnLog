@@ -37,26 +37,11 @@ namespace LincolnLog
             int day = Convert.ToInt32(curDay);
             int month = Convert.ToInt32(curMonth);
 
-            if (month == 1)
-            {
-                month = 12;
-                day = Utilities.getDaysInMonth(month);
-            }
-            else
-            {
-                if (day > 1)
-                {
-                    day--;
-                }
-                else
-                {
-                    month--;
-                    day = Utilities.getDaysInMonth(month);
-                }
-            }
+            DateTime curDate = new DateTime(1800, month, day, 0, 0, 0);
+            DateTime newDate = curDate.AddDays(-1);
 
-            prev[0] = day.ToString();
-            prev[1] = month.ToString();
+            prev[0] = newDate.Day.ToString();
+            prev[1] = newDate.Month.ToString();
 
             return prev;
 
@@ -70,26 +55,11 @@ namespace LincolnLog
             int day = Convert.ToInt32(curDay);
             int month = Convert.ToInt32(curMonth);
 
-            if (month == 12)
-            {
-                month = 1;
-                day = 1;
-            }
-            else
-            {
-                if (day < Utilities.getDaysInMonth(month))
-                {
-                    day++;
-                }
-                else
-                {
-                    month++;
-                    day = 1;
-                }
-            }
+            DateTime curDate = new DateTime(1800, month, day, 0, 0, 0);
+            DateTime newDate = curDate.AddDays(+1);
 
-            next[0] = day.ToString();
-            next[1] = month.ToString();
+            next[0] = newDate.Day.ToString();
+            next[1] = newDate.Month.ToString();
 
             return next;
 
@@ -124,7 +94,7 @@ namespace LincolnLog
 
                 conn.Open();
 
-                SqlCommand entries = new SqlCommand("SELECT * FROM entries  WHERE DAY([date])=@day and MONTH([date])=@month");
+                SqlCommand entries = new SqlCommand("SELECT [id] , [text] , [date] FROM entries  WHERE DAY([date])=@day and MONTH([date])=@month");
                 entries.CommandType = CommandType.Text;
                 entries.Connection = conn;
 
@@ -148,8 +118,9 @@ namespace LincolnLog
 
                         string id = string.Format("{0}", sdr[0]);
                         string txt = string.Format("{0}", sdr[1]);
+                        string date = string.Format("{0}", sdr[2]);
+
                         string desc = Utilities.getDescription(txt, 256);
-                        Match match = regex.Match(txt);
 
                         Coordinates temp;
 
@@ -159,6 +130,7 @@ namespace LincolnLog
                             sb.AppendLine("markers[" + numPins + "] = {" +
                                 "id : " + id + ", " +
                                 "desc : '" + desc + "', " +
+                                "date : '" + DateTime.Parse(date).ToString("MMMM dd, yyyy") + "', " +
                                 "lat : " + temp.getLatitude() + ", " +
                                 "lng : " + temp.getLongitude() + ", " +
                                 "coords : new google.maps.LatLng(" + temp.getLatitude() + ", " + temp.getLongitude() + "), " +
