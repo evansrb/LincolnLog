@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace LincolnLog
@@ -8,21 +9,44 @@ namespace LincolnLog
     public class Coordinates
     {
 
-        private string latitude;
-        private string longitude;
+        public static int LATITUDE_MIN = -90;
+        public static int LATITUDE_MAX = 90;
+        public static int LONGITUDE_MIN = -180;
+        public static int LONGITUDE_MAX = 180;
 
-        public Coordinates(string latitude, string longitude)
+        private double latitude = 0;
+        private double longitude = 0;
+
+        public Coordinates(double latitude, double longitude)
         {
             this.latitude = latitude;
             this.longitude = longitude;
         }
 
-        public string getLatitude()
+        public Coordinates(string latitude, string longitude)
+        {
+            this.latitude = Convert.ToDouble(latitude);
+            this.longitude = Convert.ToDouble(longitude);
+        }
+
+        public static bool isValid(string coords)
+        {
+
+            if (Regex.IsMatch(coords.Trim(), "^(\\-?\\d+(\\.\\d+)?)\\s*,\\s*(\\-?\\d+(\\.\\d+)?)$"))
+            {
+                return true;
+            }
+
+            return false;
+
+        }
+
+        public double getLatitude()
         {
             return this.latitude;
         }
 
-        public string getLongitude()
+        public double getLongitude()
         {
             return this.longitude;
         }

@@ -116,3 +116,9 @@ function getLatLngFromName(name, callback, map, pin) {
     return result;
 
 }
+
+function centerMapAtPoint(point) {
+
+    G_MAP.setCenter(point);
+
+}

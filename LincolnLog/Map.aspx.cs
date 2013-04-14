@@ -40,7 +40,7 @@ namespace LincolnLog
 
                 conn.Open();
 
-                SqlCommand entries = new SqlCommand("SELECT * FROM entries  WHERE DAY([date])=@day and MONTH([date])=@month and MONTH([date])=@month");
+                SqlCommand entries = new SqlCommand("SELECT * FROM entries  WHERE DAY([date])=@day and MONTH([date])=@month");
                 entries.CommandType = CommandType.Text;
                 entries.Connection = conn;
 

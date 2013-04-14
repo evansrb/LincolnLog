@@ -3,6 +3,8 @@
 <asp:Content ID="Content" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script>
 
+        var center;
+
         function initialize() {
 
             bootstrap();
@@ -38,6 +40,7 @@
                 for (var i = 0; i < markers.length; i++) {
                     markers[i].setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
                 }
+                iw.close();
             });
 
             var bounds = new google.maps.LatLngBounds();
@@ -49,6 +52,7 @@
                     map : G_MAP,
                     animation : google.maps.Animation.DROP
                 });
+                marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
 
                 var desc = "";
                 if (markers[i].loc != "") {
@@ -63,11 +67,20 @@
 
             }
 
-            G_MAP.setCenter(getCenterPointFromMarkers(markers));
+            center = getCenterPointFromMarkers(markers);
+
+            G_MAP.setCenter(center);
 
         }
 
         google.maps.event.addDomListener(window, "load", initialize);
+
+        $(document).ready(function () {
+            $("a#center-map").click(function (e) {
+                e.preventDefault();
+                centerMapAtPoint(center);
+            });
+        });
 
         $(window).resize(function () {
             sizeMap();
@@ -79,6 +92,7 @@
 
     </script>
     <h1><%=DateTime.Today.ToString("MMMM d")%></h1>
+    <p><a id="center-map" href="#">Center Map from Points</a></p>
     <div id="map-canvas"></div>
     <div id ="test" runat="server">
         </div>

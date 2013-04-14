@@ -9,14 +9,13 @@
     <script>
 
         var pin;
+        var center;
 
         function initialize() {
 
             bootstrap();
 
             enforceZoom(G_MAP, LL_CONFIG.USER_ZOOM_MIN, LL_CONFIG.ZOOM_MAX, LL_CONFIG.ZOOM_DEFAULT);
-
-            var center;
 
             pin = new google.maps.Marker({
                 <% if (location != null) { %>
@@ -28,8 +27,9 @@
             
             <% if (location != null) { %>
                 G_MAP.setCenter(new google.maps.LatLng(<%=location%>));
+                center = G_MAP.getCenter();
             <% } else { %>
-                getLatLngFromName("<%=name%>", update, G_MAP, pin);
+                center = getLatLngFromName("<%=name%>", update, G_MAP, pin);
             <% } %>
 
         }
@@ -43,8 +43,16 @@
 
         google.maps.event.addDomListener(window, "load", initialize);
 
+        $(document).ready(function () {
+            $("a#center-map").click(function (e) {
+                e.preventDefault();
+                centerMapAtPoint(center);
+            });
+        });
+
     </script>
 	<table id="detail-desc" border="1"><%=description%></table>
+    <p><a id="center-map" href="#">Center Map at Point</a></p>
     <%=map%>
     <div id ="test" runat="server">
         </div>
