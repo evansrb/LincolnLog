@@ -122,3 +122,10 @@ function centerMapAtPoint(point) {
     G_MAP.setCenter(point);
 
 }
+
+function update(map, pin, loc) {
+
+    map.setCenter(loc);
+    pin.setPosition(loc);
+
+}

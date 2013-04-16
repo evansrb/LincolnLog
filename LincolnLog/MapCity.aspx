@@ -1,9 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LincolnLog.Master" AutoEventWireup="true" CodeBehind="Map.aspx.cs"  Inherits="LincolnLog.Map"  %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LincolnLog.Master" AutoEventWireup="true" CodeBehind="MapCity.aspx.cs"  Inherits="LincolnLog.MapCity"  %>
 
 <asp:Content ID="Content" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script>
 
         var center;
+
+        var iw;
 
         function initialize() {
 
@@ -16,11 +18,12 @@
             <%=markers%>
 
             var oms = new OverlappingMarkerSpiderfier(G_MAP, {
-                markersWontMove : true,
-                markersWontHide : true,
-                keepSpiderfied  : true,
-                circleSpiralSwitchover : 9,
-                legWeight : 2
+                markersWontMove: true,
+                markersWontHide: true,
+                keepSpiderfied: true,
+                circleSpiralSwitchover: 9,
+                legWeight: 2,
+                nearbyDistance : 50
             });
 
             var iw = new google.maps.InfoWindow();
@@ -48,22 +51,16 @@
             for (var i = 0; i < markers.length; i++) {
 
                 var marker = new google.maps.Marker({
-                    position : markers[i].coords,
-                    map : G_MAP,
-                    animation : google.maps.Animation.DROP
+                    position: markers[i].coords,
+                    map: G_MAP,
+                    animation: google.maps.Animation.DROP
                 });
                 marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
 
                 var desc = "";
-                if (markers[i].loc != "") {
-                    desc += "<h3>" + markers[i].loc + "</h3>";
-                }
-                if (markers[i].date != "") {
-                    desc += "<h4>" + markers[i].date + "</h4>";
-                }
-                desc += "<p>" + markers[i].desc + "</p>";
 
-                desc += '<a href="Detail.aspx?id=' + markers[i].id + '">View Details</a>'
+                desc += '<h2>' + markers[i].loc + '</h2>';
+                desc += '<a href="City.aspx&city=' + encodeURIComponent(markers[i].loc) + '">View entries</a>';
 
                 marker.desc = desc;
                 oms.addMarker(marker);
@@ -83,17 +80,6 @@
                 e.preventDefault();
                 centerMapAtPoint(center);
             });
-            /*
-            $("#map-canvas").css({
-                margin: 0,
-                position: 'absolute', //or fixed depending on needs
-                top: $(window).scrollTop(), // top pos based on scoll pos
-                left: 0,
-                height: '100%',
-                width: '100%',
-                border: 0
-            });
-            */
         });
 
         $(window).resize(function () {
@@ -105,12 +91,7 @@
         });
 
     </script>
-    <h1><%=header%></h1>
-    <ul id="map-nav">
-    <li><a href="<%=prev%>">&laquo; Previous Day</a></li>
-    <li><a id="center-map" href="#">Center Map from Points</a></li>
-    <li><a href="<%=next%>">Next Day &raquo;</a></li>
-    </ul>
+    <h1>Browse By City</h1>
     <div id="map-canvas"></div>
     <div id ="test" runat="server">
         </div>

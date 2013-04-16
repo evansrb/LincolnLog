@@ -16,7 +16,7 @@
     <style>
         #map-canvas {
             margin-left: 125px;
-            min-height: 300px;
+            min-height: 500px;
             border: 5px solid #fc6;
         }
         #map-nav {
@@ -41,6 +41,7 @@
         #map-nav a {
             color: #c00;
             text-decoration: none;
+            text-shadow: 1px 1px #fff;
         }
         #map-nav a:link, #map-nav a:active, #map-nav a:visited {
         }
@@ -69,6 +70,7 @@
         <asp:HyperLink ID="CalendarLink" runat="server" NavigateUrl="~/Calendar.aspx" EnableViewState="False">Browse Calendar</asp:HyperLink><br />
         <asp:HyperLink ID="ThisDayLink" runat="server" NavigateUrl="~/ThisDay.aspx" EnableViewState="False">This Day</asp:HyperLink><br />
         <asp:HyperLink ID="MapLink" runat="server" NavigateUrl="~/Map.aspx" EnableViewState="False">Browse By Day</asp:HyperLink><br />
+        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/MapCity.aspx" EnableViewState="False">Browse By City</asp:HyperLink><br />
         <br />
         <div class="picLink">
         <a href="http://www.papersofabrahamlincoln.org/"><img alt="Lincoln Papers" style="vertical-align: top; border-style:none;" src="/images/publication.png"/></a>

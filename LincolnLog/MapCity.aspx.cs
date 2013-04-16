@@ -12,29 +12,21 @@ using System.IO;
 using System.Text;
 using System.Data;
 using System.Data.SqlClient;
-using System.Collections;
 
 namespace LincolnLog
 {
 
-    public partial class Test : System.Web.UI.Page
+    public partial class MapCity : System.Web.UI.Page
     {
 
-        private ArrayList cities;
+        public int numPins = 0;
 
-        public string title;
-
-        public Test()
-        {
-
-            cities = new ArrayList();
-
-        }
+        public string markers = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            int valid = 0;
+            StringBuilder sb = new StringBuilder();
 
             string connStr = ConfigurationManager.ConnectionStrings["lincolnlog_productionConnectionString"].ConnectionString;
             using (SqlConnection conn = new SqlConnection(connStr))
@@ -42,7 +34,7 @@ namespace LincolnLog
 
                 conn.Open();
 
-                SqlCommand entries = new SqlCommand("SELECT [id] , [text] FROM entries");
+                SqlCommand entries = new SqlCommand("SELECT [place] , [lat] , [long] FROM places WHERE lat IS NOT NULL");
                 entries.CommandType = CommandType.Text;
                 entries.Connection = conn;
 
@@ -53,15 +45,16 @@ namespace LincolnLog
                     while (sdr.Read())
                     {
 
-                        string id = string.Format("{0}", sdr[0]);
-                        string text = string.Format("{0}", sdr[1]);
+                        string place = string.Format("{0}", sdr[0]);
+                        string _lat = string.Format("{0}", sdr[1]);
+                        string _long = string.Format("{0}", sdr[2]);
 
-                        string city = Utilities.getLocationName(text);
+                        sb.AppendLine("markers[" + numPins + "] = {" +
+                            "loc : \"" + place + "\"," +
+                            "coords : new google.maps.LatLng(" + _lat + ", " + _long + ")" +
+                        "};");
 
-                        if (cities.Contains(city) != true)
-                        {
-                            cities.Add(city);
-                        }
+                        numPins++;
 
                     }
                 }
@@ -70,8 +63,7 @@ namespace LincolnLog
 
             }
 
-            this.title = "Test" + valid;
-            this.title += string.Join(" - ", cities.ToArray());
+            markers = sb.ToString();
 
         }
     }

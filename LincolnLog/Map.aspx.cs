@@ -107,6 +107,10 @@ namespace LincolnLog
             {
                 Response.Redirect("~/Map.aspx");
             }
+            else
+            {
+                Session["previous"] = HttpContext.Current.Request.Url.AbsoluteUri;
+            }
 
             StringBuilder sb = new StringBuilder();
 

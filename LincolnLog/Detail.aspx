@@ -34,13 +34,6 @@
 
         }
 
-        function update(map, pin, loc) {
-
-            map.setCenter(loc);
-            pin.setPosition(loc);
-
-        }
-
         google.maps.event.addDomListener(window, "load", initialize);
 
         $(document).ready(function () {
@@ -51,8 +44,10 @@
         });
 
     </script>
+    
 	<table id="detail-desc" border="1"><%=description%></table>
     <ul id="map-nav">
+    <li><a href="<%=Session["previous"]%>">Go Back</a></li>
     <li><a id="center-map" href="#">Center Map at Point</a></li>
     </ul>
     <%=map%>
