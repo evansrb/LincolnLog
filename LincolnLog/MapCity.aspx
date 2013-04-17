@@ -60,7 +60,7 @@
                 var desc = "";
 
                 desc += '<h2>' + markers[i].loc + '</h2>';
-                desc += '<a href="City.aspx&city=' + encodeURIComponent(markers[i].loc) + '">View entries</a>';
+                desc += '<a href="City.aspx?city=' + markers[i].loc + '">View entries</a>';
 
                 marker.desc = desc;
                 oms.addMarker(marker);

@@ -35,6 +35,20 @@ namespace LincolnLog
 
         }
 
+        public static string urlDecode(string text) {
+
+            text = text.Replace("+", " ");
+            return System.Uri.UnescapeDataString(text);
+
+        }
+
+        public static string urlEncode(string text)
+        {
+
+            return System.Uri.EscapeDataString(text);
+
+        }
+
         public static string getMonthName(string monthName)
         {
 

@@ -137,6 +137,8 @@ namespace LincolnLog
                 theDay.Value = day;
                 theMonth.Value = month;
 
+                Utilities.logLine(entries.CommandText);
+
                 SqlDataReader sdr = entries.ExecuteReader();
 
                 if (sdr.HasRows)

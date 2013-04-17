@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Calendar.aspx" />
+    <Content Include="City.aspx" />
     <Content Include="MapCity.aspx" />
     <Content Include="Test.aspx" />
     <Content Include="Detail.aspx" />
@@ -111,6 +112,13 @@
       <DependentUpon>Calendar.aspx</DependentUpon>
     </Compile>
     <Compile Include="Coordinates.cs" />
+    <Compile Include="City.aspx.cs">
+      <DependentUpon>City.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="City.aspx.designer.cs">
+      <DependentUpon>City.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MapCity.aspx.cs">
       <DependentUpon>MapCity.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
